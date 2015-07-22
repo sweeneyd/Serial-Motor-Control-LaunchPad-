@@ -24,7 +24,7 @@ const int speedCtrl = P2_1;
 
 // Interprets duty cycle;
 void dutyCycle (String inputString) {
-  int dutyCycle = inputString.substring(1, 4).toInt();
+  int dutyCycle = inputString.substring(1, 5).toInt();
   if (dutyCycle > 255) {
     Serial.println("Duty cycle out of range: too large.");
     Serial.println("Duty cycle set to 255.");
@@ -38,6 +38,7 @@ void dutyCycle (String inputString) {
   else {
     Serial.print("Duty cycle: ");
     Serial.println(dutyCycle);
+//    digitalWrite(speedCtrl, LOW);
     analogWrite(speedCtrl, dutyCycle);
   }
   Serial.println();
@@ -62,7 +63,7 @@ void motorDir(String inputString) {
         Serial.println("Direction: Reverse");
         break;
         
-      // Incorrect input
+      // Incorrect input or Quit
       default:
         digitalWrite(M3, LOW);
         digitalWrite(M4, LOW);
